@@ -48,6 +48,11 @@ static int get_max_fd() {
     }
     return max;
 }
+/**
+ * Intialization of some resources
+ */ 
+static void init_server(){
+}
 
 /*----------------------*/
 
