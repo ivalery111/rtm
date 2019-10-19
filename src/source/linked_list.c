@@ -41,20 +41,34 @@ void add_node(node_t **begin, sync_message_t *other_message) {
     }
 }
 
-void Test() {
+node_t *find_node(node_t *begin, sync_message_t *search_message) {
 
-    node_t *list = NULL;
-
-    sync_message_t msg1 = {.op_code = CREATE, .msg_body.mask = 'a'};
-    add_node(&list, &msg1);
-
-    sync_message_t msg2 = {.op_code = UPDATE, .msg_body.mask = 'b'};
-    add_node(&list, &msg2);
-
-    sync_message_t msg3 = {.op_code = DELETE, .msg_body.mask = 'c'};
-    add_node(&list, &msg3);
-
-    puts("Done!");
+    if (search_message == NULL) {
+        perror("Search node is empty");
+        exit(EXIT_FAILURE);
+    } else {
+        for (node_t *current = begin; current != NULL;
+             current = current->next) {
+            if (compare_messages(current->message, search_message)) {
+                return current;
+            }
+        }
+    }
+    return NULL;
 }
 
-int main() { Test(); }
+void delete_node(node_t **list) {
+    
+    node_t *next = NULL;
+
+    if ((*list)->next != NULL) { /* If not last node */
+        next = (*list)->next;
+        free(*list);
+        *list = next;
+    }
+    else{ 
+        if(*list){
+            free(*list);
+        }
+    }
+}

@@ -12,3 +12,5 @@ typedef struct node{
 
 node_t* create_node(sync_message_t *other_message);
 void add_node(node_t **begin, sync_message_t* other_message);
+node_t *find_node(node_t *begin, sync_message_t *search_message);
+void delete_node(node_t **list);
