@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/select.h>
+#include "linked_list.h"
 
 /* Must be unique */
 #define SOCKET_NAME "/tmp/ProjectServer"
@@ -17,6 +18,8 @@
 
 int monitored_fd_set[MAX_CLIENT_SUPPORTED];
 int client_result[MAX_CLIENT_SUPPORTED] = {0};
+
+static node_t* list = NULL;
 
 static void initialize_monitor_fd_set();
 static void add_to_minitored_fd_set(int socket_fd);
