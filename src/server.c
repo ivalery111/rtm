@@ -54,6 +54,10 @@ static int get_max_fd() {
 static void init_server(){
 }
 
+static int add_message_to_table(sync_message_t *message){
+    
+}
+
 /*----------------------*/
 
 int main(void) {
