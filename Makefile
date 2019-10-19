@@ -3,6 +3,8 @@ CFLAGS = -g -Wall
 ROOTDIR = src
 SOURCEDIR = src/source
 HEADERDIR = src/header
+OBJECTS = linked_list.o server.o
+OBJECTSDEBUG = linked_list-debug.o server-debug.o
 
 all: clean server client
 
@@ -14,10 +16,20 @@ server:
 client:
 	$(CC) $(CFLAGS) $(ROOTDIR)/client.c -o client.out
 
-server-debug:
-	$(CC) $(CFLAGS) -DDEBUG $(ROOTDIR)/server.c -o server.out
 client-debug:
 	$(CC) $(CFLAGS) -DDEBUG $(ROOTDIR)/client.c -o client.out
 
+server-debug: $(OBJECTSDEBUG)
+	$(CC) $(OBJECTS) -o server-debug.out
+
+linked_list-debug.o: 
+	$(CC) $(CFLAGS) -DDEBUG -I$(HEADERDIR) -c $(SOURCEDIR)/linked_list.c -o linked_list.o
+
+server-debug.o:
+	$(CC) $(CFLAGS) -DDEBUG -c $(ROOTDIR)/server.c -o server.o
+
 clean:
 	rm -f *.out
+	rm -f *.o
+
+ 

@@ -3,11 +3,13 @@
 #include "header/definitions.h"
 
 /*          API         */
+/*
 static void initialize_monitor_fd_set() {
     for (int i = 0; i < MAX_CLIENT_SUPPORTED; i++) {
         monitored_fd_set[i] = -1;
     }
 }
+*/
 
 static void add_to_minitored_fd_set(int socket_fd) {
     for (int i = 0; i < MAX_CLIENT_SUPPORTED; i++) {
@@ -51,7 +53,13 @@ static int get_max_fd() {
 /**
  * Intialization of some resources
  */ 
+/*
 static void init_server(){
+}
+*/
+
+static void add_message_to_table(sync_message_t *message){
+    add_node(&list,message);
 }
 
 /*----------------------*/
@@ -150,8 +158,7 @@ int main(void) {
 
                     memcpy(&message, buffer, sizeof(sync_message_t));
 
-                    LOG_INFO("op_code = %d", message.op_code);
-                    LOG_INFO("mask = %c", message.msg_body.mask);
+                    add_message_to_table(&message);
 
                     /* Stopeed HERE! */
                 }
