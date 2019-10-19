@@ -1,6 +1,6 @@
-#include "server.h"
-#include "debug.h"
-#include "definitions.h"
+#include "header/server.h"
+#include "header/debug.h"
+#include "header/definitions.h"
 
 /*          API         */
 static void initialize_monitor_fd_set() {

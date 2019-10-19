@@ -1,4 +1,4 @@
-#include "linked_list.h"
+#include "header/linked_list.h"
 
 /**
  * create_node - create a new node with @other_message
