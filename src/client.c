@@ -63,6 +63,9 @@ void receive_result(int* data_socket){
     printf("Received data from Server: %s\n", szBuffer);
 }
 
+void get_message_from_user(sync_message_t *message){
+}
+
 int main(int argc, char *argv[]) {
 
     int data_socket = -1;

@@ -30,5 +30,6 @@ void create_data_socket(int* data_socket);
 void connect_socket(struct sockaddr_un* addr, int* data_socket);
 void send_arguments(int* data_socket);
 void receive_result(int* data_socket);
+void get_message_from_user(sync_message_t *message);
 
 #endif
