@@ -55,7 +55,8 @@ int main(void) {
     /* If programm exited not correct in the last time */
     unlink(SOCKET_NAME);
 
-    initialize_monitor_fd_set();
+    //initialize_monitor_fd_set();
+    //add_to_minitored_fd_set(0);
 
     /* Create Master Socket */
     int master_socket = socket(AF_UNIX, SOCK_STREAM, 0);
@@ -145,7 +146,7 @@ int main(void) {
                     memcpy(&message, buffer, sizeof(sync_message_t));
 
                     LOG_INFO("op_code = %d", message.op_code);
-                    LOG_INFO("mask = %d", message.msg_body.mask);
+                    LOG_INFO("mask = %c", message.msg_body.mask);
 
                     /* Stopeed HERE! */
                 }
