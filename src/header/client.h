@@ -1,3 +1,6 @@
+#ifndef CLIENT_H
+#define CLIENT_H
+
 /*
  * CLIENT STEPS:
  *  socket()
@@ -27,3 +30,5 @@ void create_data_socket(int* data_socket);
 void connect_socket(struct sockaddr_un* addr, int* data_socket);
 void send_arguments(int* data_socket);
 void receive_result(int* data_socket);
+
+#endif

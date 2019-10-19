@@ -1,3 +1,6 @@
+#ifndef SERVER_H
+#define SERVER_h
+
 #include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
@@ -20,3 +23,5 @@ static void add_to_minitored_fd_set(int socket_fd);
 static void remove_from_monitored_fd_set(int socket_fd);
 static void refresh_fd_set(fd_set* pFD_set);
 static int get_max_fd();
+
+#endif

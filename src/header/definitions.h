@@ -1,3 +1,6 @@
+#ifndef DEFINITION_H
+#define DEFINITION_H
+
 /* Operations code */
 typedef enum{
     CREATE,
@@ -22,3 +25,5 @@ typedef struct{
  *  message_body
  * sync_message
  */
+
+#endif
