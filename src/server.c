@@ -55,6 +55,8 @@ int main(void) {
     /* If programm exited not correct in the last time */
     unlink(SOCKET_NAME);
 
+    initialize_monitor_fd_set();
+
     /* Create Master Socket */
     int master_socket = socket(AF_UNIX, SOCK_STREAM, 0);
     if (master_socket == -1) {
