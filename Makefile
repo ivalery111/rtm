@@ -3,8 +3,8 @@ CFLAGS = -g -Wall
 ROOTDIR = src
 SOURCEDIR = src/source
 HEADERDIR = src/header
-OBJECTS = linked_list.o server.o
-OBJECTSDEBUG = linked_list-debug.o server-debug.o
+OBJECTS =  definitions.o linked_list.o server.o
+OBJECTSDEBUG = definitions-debug.o linked_list-debug.o server-debug.o
 
 all: clean server client
 
@@ -27,6 +27,9 @@ linked_list-debug.o:
 
 server-debug.o:
 	$(CC) $(CFLAGS) -DDEBUG -c $(ROOTDIR)/server.c -o server.o
+
+definitions-debug.o:
+	$(CC) $(CFLAGS) -DDEBUG -I$(HEADERDIR) -c $(SOURCEDIR)/definitions.c -o definitions.o
 
 clean:
 	rm -f *.out
