@@ -23,5 +23,6 @@ static void add_to_minitored_fd_set(int socket_fd);
 static void remove_from_monitored_fd_set(int socket_fd);
 static void refresh_fd_set(fd_set* pFD_set);
 static int get_max_fd();
+static void init_server();
 
 #endif

@@ -49,6 +49,9 @@ static int get_max_fd() {
     return max;
 }
 
+static init_server(){
+}
+
 /*----------------------*/
 
 int main(void) {
