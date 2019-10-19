@@ -21,11 +21,11 @@ int client_result[MAX_CLIENT_SUPPORTED] = {0};
 
 static node_t* list = NULL;
 
-static void initialize_monitor_fd_set();
+/*static void initialize_monitor_fd_set();*/
 static void add_to_minitored_fd_set(int socket_fd);
 static void remove_from_monitored_fd_set(int socket_fd);
 static void refresh_fd_set(fd_set* pFD_set);
 static int get_max_fd();
-static void init_server();
-static int add_message_to_table(sync_message_t *message);
+/* static void init_server(); */
+static void add_message_to_table(sync_message_t *message);
 #endif
