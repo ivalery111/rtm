@@ -29,16 +29,13 @@ void connect_socket(struct sockaddr_un *addr, int *data_socket) {
     }
 }
 
-void send_arguments(int* data_socket) {
+void send_arguments(int *data_socket) {
     int i = -1;
     do {
-        printf("Enter the mask number to send to server:\n");
-        scanf("%d", &i);
-
         sync_message_t message;
 
-        message.op_code = CREATE;
-        message.msg_body.mask = i;
+        /* Fill message from user input */
+        get_message_from_user(&message, &i);
 
         int ret = write(*data_socket, &message, sizeof(sync_message_t));
         if (ret == -1) {
@@ -51,7 +48,7 @@ void send_arguments(int* data_socket) {
     } while (i); /* Until i != 0 */
 }
 
-void receive_result(int* data_socket){
+void receive_result(int *data_socket) {
     char szBuffer[BUFFER_SIZE];
     memset(szBuffer, 0, BUFFER_SIZE);
 
@@ -61,6 +58,56 @@ void receive_result(int* data_socket){
         exit(EXIT_FAILURE);
     }
     printf("Received data from Server: %s\n", szBuffer);
+}
+
+void get_message_from_user(sync_message_t *message, int *choice) {
+
+    int choose = -1;
+    // do {
+    puts("What you want to do?");
+    printf("\t1 - Create\n\t2 - Update\n\t3 - Delete\n\t0 - Exit\n->:");
+    scanf("%d", &choose);
+
+    switch (choose) {
+    case 1: {
+        message->op_code = CREATE;
+        break;
+    }
+    case 2: {
+        message->op_code = UPDATE;
+        break;
+    }
+    case 3: {
+        message->op_code = DELETE;
+        break;
+    }
+    case 0: {
+        *choice = choose;
+        return;
+    }
+    default: {
+        fprintf(stderr, "Unknown choice!\n");
+        break;
+    }
+    }
+
+    printf("Enter destination address:\n->:");
+    fscanf(stdin, "%s", message->msg_body.destination);
+    LOG_DEBUG("Destination address was read from user");
+
+    printf("Enter gateway ip address:\n->:");
+    fscanf(stdin, "%s", message->msg_body.gateway_ip);
+    LOG_DEBUG("Getway ip address was read from user");
+
+    printf("Enter output interface ip address:\n->:");
+    fscanf(stdin, "%s", message->msg_body.output_interface);
+    LOG_DEBUG("Output interface ip address was read from user");
+
+    printf("Enter a mask:\n->:");
+    scanf("%c", &message->msg_body.mask);
+    LOG_DEBUG("Mask was read from user");
+
+    // } while (choose != 0);
 }
 
 int main(int argc, char *argv[]) {
