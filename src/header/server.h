@@ -28,4 +28,5 @@ static void refresh_fd_set(fd_set* pFD_set);
 static int get_max_fd();
 /* static void init_server(); */
 static void add_message_to_table(sync_message_t *message);
+static void parse_message(sync_message_t *message);
 #endif
