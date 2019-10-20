@@ -63,6 +63,27 @@ static void add_message_to_table(sync_message_t *message){
 }
 
 static void parse_message(sync_message_t *message){
+    switch (message->op_code)
+    {
+    case CREATE:{
+        //add_message_to_table(message);
+        add_node(&list, message);
+        break;
+    }
+    case UPDATE:{
+        /* Need add update_node to linked_list.h */
+        break;
+    }
+    case DELETE:{
+        node_t *rem = find_node(list, message);
+        delete_node(&rem);  
+        break;
+    }
+    
+    default:
+        perror("Can't parse the message");
+        break;
+    }
 }
 
 /*----------------------*/
@@ -161,7 +182,7 @@ int main(void) {
 
                     memcpy(&message, buffer, sizeof(sync_message_t));
 
-                    add_message_to_table(&message);
+                    parse_message(&message);
 
                     /* Stopeed HERE! */
                 }
