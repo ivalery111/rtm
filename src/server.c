@@ -62,6 +62,9 @@ static void add_message_to_table(sync_message_t *message){
     add_node(&list,message);
 }
 
+static void parse_message(sync_message_t *message){
+}
+
 /*----------------------*/
 
 int main(void) {
